@@ -162,3 +162,98 @@ describeCity("toronto")
 describeCity("ottawa")
 describeCity("tokyo", "japan")
 describeCity("saigon", "vietnam")
+
+# Using a function with a while loop
+def getFormattedName(firstname, lastname):
+    """Return a full name, neatly formatted."""
+    fullname = f"{firstname} {lastname}"
+    return fullname.title()
+
+# This is an infinit loop!
+while True:
+    print("\nPlease tell me your name:")
+    print("(enter 'q' at any time to quite)")
+    # Getting user input for first name and saving it to a variable
+    fName = input("First Name: ")
+    # Checking if user inputs 'q' in order to end the program
+    if fName == "q":
+        break
+    # user info for last name
+    lName = input("Last name: ")
+    # checking again if they decided to end the program
+    if lName == "q":
+        break
+    # Called the function with the user given data in order to format it. Once formatted, it is return here and save into the variable formattedName
+    formattedName = getFormattedName(fName, lName)
+    # We then print the name
+    print(f"\nHello, {formattedName}!")
+    
+# 8-6. City Names: Write a function called city_country() that takes in the name of a city and its country. The function should return a string formatted like this: "Santiago, Chile"
+# Call your function with at least three city-country pairs, and print the values that are returned.
+
+def cityCountry(city, country):
+    print(f"\n{city.title()}, {country.title()}")
+    
+cityCountry("toronto", "canada")
+cityCountry("tokyo", "japan")
+cityCountry("saigon", "vietnam")
+
+# 8-7. Album: Write a function called make_album() that builds a dictionary
+# describing a music album. The function should take in an artist name and an
+# album title, and it should return a dictionary containing these two pieces of
+# information. Use the function to make three dictionaries representing different albums. Print each return value to show that the dictionaries are storing the album information correctly. Use None to add an optional parameter to make_album() that allows you to store the number of songs on an album. If the calling line includes a value for the number of songs, add that value to the album’s dictionary. Make at least one new function call that includes the number of songs on an album.
+
+def makeAlbum(artistName, albumTitle, songsNum=None):
+    album = {
+        "name": artistName,
+        "title": albumTitle
+    }
+    if songsNum:
+        album["num"] = songsNum
+    
+    return album
+    
+album = makeAlbum("wu tang", "36 chambers")
+print(album)
+album = makeAlbum("wu tang", "36 chambers", songsNum=12)
+print(album)
+album = makeAlbum("alabama shakes", "sound & color", songsNum=15)
+print(album)
+
+# 8-8. User Albums: Start with your program from Exercise 8-7. Write a while
+# loop that allows users to enter an album’s artist and title. Once you have that information, call make_album() with the user’s input and print the dictionary that’s created. Be sure to include a quit value in the while loop.
+
+
+def makeAlbum(artistName, albumTitle, songsNum=None):
+    album = {
+        "name": artistName,
+        "title": albumTitle
+    }
+    if songsNum:
+        album["num"] = songsNum
+
+    return album
+
+while True:
+    print("\nPlease provide the following info:")
+    print("(You can quit at any time by typing 'q')")
+    artistName = input("\nArtist name: ")
+    if artistName == "q":
+        break
+    
+    albumTitle = input("Album title: ")
+    if albumTitle == "q":
+        break
+    
+    trackNum = input("Track number? (y/n) ")
+    if trackNum == "q":
+        break
+    
+    if trackNum == "y":
+        trackNum = input("Please enter the track number: ")
+        details = makeAlbum(artistName, albumTitle, trackNum)
+        print(f"\n{details}")
+    else:
+        details = makeAlbum(artistName, albumTitle)
+        print(f"\n{details}")
+    
