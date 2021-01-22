@@ -1,3 +1,17 @@
+import printingFunctions
+
+# 8-16. Imports: Using a program you wrote that has one function in it, store that
+# function in a separate file. Import the function into your main program file, and call the function using each of these approaches:
+# import module_name
+# from module_name import function_name
+from printingFunctions import printModels
+# from module_name import function_name as fn
+# import module_name as mn
+from printingFunctions import printModels as pm
+# from module_name import *
+from printingFunctions import *
+
+
 # Modifying a list in a function
 # When you pass a list to a function, the function can modify the list. Any changes made to the list inside the function’s body are permanent, allowing you to work efficiently even when you’re dealing with large amounts of data.
 # Start with some designs that need to be printed
@@ -21,30 +35,33 @@ for completedModel in completedModels:
 
 # We've seen the above code in a similar example before, however it's not using a function. Modifying it so it does using two functions:
 
-# Defining the function that will take in both our lists we want to modify
-def printModels(unprintedDesigns, completedModels):
-    # Simulate printing each design, until non are left
-    # Move each design to completedModels after printing
-    while unprintedDesigns:
-        # remove value from list using pop (last item)
-        currentDesign = unprintedDesigns.pop()
-        # print that we are working on design
-        print(f"Printing model: {currentDesign}")
-        # once done, we add, append the value from currentDesign to completedModels
-        completedModels.append(currentDesign)
+
+# Moved to printingFunctions.py for practice questions. Imported at top
+# # Defining the function that will take in both our lists we want to modify
+# def printModels(unprintedDesigns, completedModels):
+#     # Simulate printing each design, until non are left
+#     # Move each design to completedModels after printing
+#     while unprintedDesigns:
+#         # remove value from list using pop (last item)
+#         currentDesign = unprintedDesigns.pop()
+#         # print that we are working on design
+#         print(f"Printing model: {currentDesign}")
+#         # once done, we add, append the value from currentDesign to completedModels
+#         completedModels.append(currentDesign)
 
 # Our second function will be called once the first is done with the data so we can print it out using the list completedModels
 def showCompletedModels(completedModels):
     # Display all completed models
     print("\nThe following models have been printed:")
     for completedModel in completedModels:
-        print(completedModel)
+        print(completedModel, "test Q")
 
 unprintedDesigns = ['phone case', 'robot pendant', 'dodecahedron']
 completedModels = []
 
 # Pass our lists to printModels
-printModels(unprintedDesigns, completedModels)
+# importing the below function from printinFunctions.py for test Q
+printingFunctions.printModels(unprintedDesigns, completedModels)
 # Call the below to print out our new, modified list
 showCompletedModels(completedModels)
 
